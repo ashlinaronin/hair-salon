@@ -37,6 +37,57 @@
             $this->assertEquals($name, $result);
         }
 
+        function test_getPhone()
+        {
+            //Arrange
+            $name = "Joann";
+            $phone = "5033445678";
+            $specialty = "Men\'s Cuts";
+            $weekends = true;
+
+            $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
+
+            //Act
+            $result = $test_stylist->getPhone();
+
+            //Assert
+            $this->assertEquals($phone, $result);
+        }
+
+        function test_getSpeciality()
+        {
+            //Arrange
+            $name = "Joann";
+            $phone = "5033445678";
+            $specialty = "Men\'s Cuts";
+            $weekends = true;
+
+            $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
+
+            //Act
+            $result = $test_stylist->getSpecialty();
+
+            //Assert
+            $this->assertEquals($specialty, $result);
+        }
+
+        function test_getWeekends()
+        {
+            //Arrange
+            $name = "Joann";
+            $phone = "5033445678";
+            $specialty = "Men\'s Cuts";
+            $weekends = true;
+
+            $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
+
+            //Act
+            $result = $test_stylist->getWeekends();
+
+            //Assert
+            $this->assertEquals($weekends, $result);
+        }
+
 
 
     }
