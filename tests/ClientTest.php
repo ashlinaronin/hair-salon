@@ -4,7 +4,7 @@
     * @backupStatic Attributes disabled
     */
 
-    //require_once "src/Stylist.php";
+    require_once "src/Stylist.php";
     require_once "src/Client.php";
 
     $server = 'mysql:host=localhost:3306;dbname=hair_salon_test';
@@ -14,11 +14,11 @@
 
     class ClientTest extends PHPUnit_Framework_TestCase
     {
-        // protected function tearDown()
-        // {
-        //     //Stylist::deleteAll();
-        //     Client::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Stylist::deleteAll();
+            Client::deleteAll();
+        }
 
         function test_getName()
         {

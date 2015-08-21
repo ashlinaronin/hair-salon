@@ -44,20 +44,36 @@
         //[C]reate
         function save()
         {
-
+            $GLOBALS['DB']->exec(
+                "INSERT INTO clients (name, phone, stylist_id) VALUES (
+                    '{$this->getName()}',
+                    '{$this->getPhone()}',
+                    {$this->getStylistId()}
+                );"
+            );
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         //[R]ead all
+        // Turn DB rows in clients table into an array of Client objects
         static function getAll()
         {
+            $db_clients= $GLOBALS['DB']->query("SELECT * FROM clients;");
+            $all_clients = array();
 
+            foreach ($db_clients as $client) {
+                $new_client = new Client(
+                    $client['name'],
+                    $client['phone'],
+                    $client['stylist_id'],
+                    $client['id']
+                );
+                array_push($all_clients, $new_client);
+            }
+            return $all_clients;
         }
 
         //[R]ead one
-        /* I think ultimately we will be using SQL queries to access one
-         * item in the database. However, for now, because of the way the
-         * PDO object works, it is easier to turn the whole database into
-         * objects of the desired class first and then search them in PHP. */
         static function find($search_id)
         {
 
@@ -79,7 +95,7 @@
         //[D]elete all
         static function deleteAll()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM clients;");
         }
     }
 ?>
