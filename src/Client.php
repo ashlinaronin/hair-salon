@@ -15,7 +15,30 @@
         }
 
         //Getters and setters
+        function getName()
+        {
+            return $this->name;
+        }
 
+        function getPhone()
+        {
+            return $this->phone;
+        }
+
+        function setPhone($new_phone)
+        {
+            $this->phone = (string) $new_phone;
+        }
+
+        function getStylistId()
+        {
+            return $this->stylist_id;
+        }
+
+        function getId()
+        {
+            return $this->id;
+        }
 
         //Database storage methods
         //[C]reate
