@@ -205,7 +205,30 @@
             $this->assertEquals([], $result);
         }
 
+        function test_find()
+        {
+            //Arrange
+            $stylist1 = new Stylist(
+                "Iris",
+                "5033428797",
+                "Children",
+                false
+            );
+            $stylist1->save();
+            $stylist2 = new Stylist(
+                "Bif",
+                "5033421111",
+                "Beard Trimming",
+                true
+            );
+            $stylist2->save();
 
+            //Act
+            $result = Stylist::find($stylist2->getId());
+
+            //Assert
+            $this->assertEquals($stylist2, $result);
+        }
 
     }
  ?>
