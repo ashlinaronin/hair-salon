@@ -9,7 +9,7 @@
 
     $app = new Silex\Application();
 
-    $server = 'mysql:host=localhost;dbname=hair_salon';
+    $server = 'mysql:host=localhost:3306;dbname=hair_salon';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -28,13 +28,23 @@
         ));
     });
 
+    // [D]elete all stylists and clients
+    $app->delete("/", function() use ($app) {
+        Stylist::deleteAll();
+        Client::deleteAll();
+
+        return $app['twig']->render('index.html.twig', array(
+            'clients' => Client::getAll()
+        ));
+    });
+
     // [C]reate Stylist, display all stylists
     $app->post("/stylists", function() use ($app) {
         $new_stylist = new Stylist(
             $_POST['name'],
             $_POST['phone'],
             $_POST['specialty'],
-            $_POST['weekends'],
+            $_POST['weekends']
         );
         $new_stylist->save();
         return $app['twig']->render('index.html.twig', array(
@@ -113,7 +123,7 @@
 
         return $app['twig']->render('stylist.html.twig', array(
             'stylist' => $stylist,
-            'clients' => $clients
+            'clients' => $stylist->getClients()
         ));
     });
 
@@ -121,7 +131,7 @@
     $app->delete("/clients/{id}", function($id) use ($app) {
         // Get stylist_id from client before we delete him/her
         $client = Client::find($id);
-        $stylist_id = $client->getCuisineId();
+        $stylist_id = $client->getStylistId();
         $client->delete();
 
         $stylist = Stylist::find($stylist_id);

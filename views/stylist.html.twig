@@ -30,6 +30,8 @@
                         </li>
                     {% endfor %}
                 </ul>
+            {% else %}
+                <p>No clients yet.</p>
             {% endif %}
 
             <p><a href="/stylists/{{ stylist.getId }}/edit">Edit this stylist</a></p>
