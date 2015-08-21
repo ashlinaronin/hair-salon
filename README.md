@@ -1,4 +1,4 @@
-# Hair Salon
+# Belinda's Beauty Shoppe
 
 ##### _Track hairstylists and clients, 08/21/15_
 
@@ -6,18 +6,17 @@
 
 ## Description
 
-_Hair Salon allows salon owners to add, view, update and delete stylists from their database. For each stylist they can also add, view, update and delete the list of clients._
+_Belinda's Beauty Shoppe allows salon owners to add, view, update and delete stylists from their database. For each stylist they can also add, view, update and delete the list of clients._
 
 ## Setup
 
 * Clone this repository from GitHub
 * Run "composer install" in the project directory
-* Open MAMP Preferences and set MySQL port to 3306 and Apache port to 8888
-* Also in MAMP Preferences, set Web Server document root to web subdirectory of this repository
+* Open MAMP Preferences and set MySQL port to 3306
 * Start Servers in MAMP
 * Import hair_salon DB into MySQL
-* Navigate to localhost:8888 and enjoy!
-* DOESN"T WORK YETTTTTTT STIL USING LOCAL 8000
+* Start PHP server in web subdirectory ("php -S localhost:8000")
+* Navigate to localhost:8000 and enjoy!
 
 ## Technologies Used
 

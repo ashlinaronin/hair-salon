@@ -158,6 +158,7 @@
         ));
     });
 
+
     // Display Client edit form
     $app->get("/clients/{id}", function($id) use ($app) {
         $client = Client::find($id);

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Hair Salon</title>
+        <title>Stylist: {{ stylist.getName }}</title>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
         <link rel='stylesheet' href='/styles/styles.css' />
     </head>
@@ -11,7 +11,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">
                         <img alt="Salon" src="/img/scissors-icon.png" id="scissors">
-                        <span id="belinda">Belinda's Beauty</span>
+                        <span id="belinda">Belinda's Beauty Shoppe</span>
                     </a>
                 </div>
             </div>
@@ -24,14 +24,14 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3>{{ stylist.getName }}</h3>
-                            <p>Phone: {{ stylist.getPhone }}</p>
-                            <p>Specialty: {{ stylist.getSpecialty }}</p>
-                            {% if stylist.getWeekends %}
-                                <p>Available on weekends</p>
-                            {% else %}
-                                <p>Not available on weekends</p>
-                            {% endif %}
-                            <p><a href="/stylists/{{ stylist.getId }}/edit">Edit this stylist</a></p>
+                            <p><em>Phone</em>: {{ stylist.getPhone }}</p>
+                            <p><em>Specialty</em>: {{ stylist.getSpecialty }}</p>
+                            <p><em>Weekends</em>:
+                                {% if stylist.getWeekends %} Yes
+                                {% else %} No
+                                {% endif %}
+                            </p>
+                            <p><a href="/stylists/{{ stylist.getId }}/edit">Update contact info</a></p>
                         </div>
                         <div class="panel-body">
                             {% if clients is not empty %}
@@ -40,7 +40,7 @@
                                         <div class="list-group-item">
                                             <h4 class="list-group-item-heading">{{ client.getName}}</h4>
                                             <p class="list-group-item-text">Phone: {{ client.getPhone }}</p>
-                                            <a class="list-group-item-text" href="/clients/{{ client.getId }}">Update client phone</a>
+                                            <a class="list-group-item-text" href="/clients/{{ client.getId }}">Update client info</a>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -53,26 +53,27 @@
                 </div>
 
                 <div class="col-sm-6">
-
-                    <h3>Add a client</h3>
-
-                    <form action='/clients' method='post'>
-                        <div class='form-group'>
-                            <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist.getId }}'>
-                            <label for='name'>Client Name</label>
-                            <input id='name' name='name' type='text' required>
+                    <div class="panel panel-default" id="client-form">
+                        <div class="panel-heading">
+                            <h3>Add new client</h3>
                         </div>
-                        <div class='form-group'>
-                            <label for='phone'>Client Phone:</label>
-                            <input id='phone' name='phone' type='number' maxlength='10' required>
+                        <div class="panel-body">
+                            <form action='/clients' method='post'>
+                                <div class='form-group'>
+                                    <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist.getId }}'>
+                                    <label for='name'>Client Name</label>
+                                    <input id='name' name='name' type='text' required>
+                                </div>
+                                <div class='form-group'>
+                                    <label for='phone'>Client Phone:</label>
+                                    <input id='phone' name='phone' type='number' maxlength='10' required>
+                                </div>
+                                <button type="submit" class="btn btn-default btn-md" id="add_client">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Client
+                                </button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-default btn-md" id="add_client">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Client
-                        </button>
-
-                    </form>
-
-                    <p><a href='/'>Home</a></p>
+                    </div>
                 </div>
             </div>
         </div>

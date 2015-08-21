@@ -11,7 +11,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">
                         <img alt="Salon" src="/img/scissors-icon.png" id="scissors">
-                        <span id="belinda">Belinda's Beauty</span>
+                        <span id="belinda">Belinda's Beauty Shoppe</span>
                     </a>
                 </div>
             </div>
@@ -22,13 +22,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    {% if stylists is not empty %}
-
-                        <div class="panel panel-default" id="stylists">
-                            <div class="panel-heading">
-                                <h3>Stylists</h3>
-                            </div>
-                            <div class="panel-body">
+                    <div class="panel panel-default" id="stylists">
+                        <div class="panel-heading">
+                            <h3>Stylists</h3>
+                        </div>
+                        <div class="panel-body">
+                            {% if stylists is not empty %}
                                 <div class="list-group">
                                     {% for stylist in stylists %}
                                         <a class="list-group-item" href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
@@ -39,20 +38,18 @@
                                     <input name="_method" type="hidden" value="delete">
                                     <button type="submit" class="btn btn-danger">Clear all</button>
                                 </form>
-                            </div>
+                            {% else %}
+                                <p>There are no stylists yet.</p>
+                            {% endif %}
                         </div>
-
-                    {% else %}
-                        <h3>There are no stylists yet.</h3>
-                        <br />
-                    {% endif %}
+                    </div>
                 </div>
                 <!-- new stylist form -->
 
                     <div class="col-sm-6">
                         <div class="panel panel-default" id="stylist-form">
                             <div class="panel-heading">
-                                <h3>Add new stylist:</h3>
+                                <h3>Add new stylist</h3>
                             </div>
                             <div class="panel-body">
                                 <form action="/stylists" class="form-horizontal" method="post">
