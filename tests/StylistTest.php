@@ -131,6 +131,26 @@
             $this->assertEquals([$stylist1, $stylist2], $result);
         }
 
+        function test_updatePhone()
+        {
+            //Arrange
+            $name = "Steven";
+            $phone = "5093225678";
+            $specialty = "Bleaching";
+            $weekends = true;
+
+            $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
+            $test_stylist->save();
+
+            //Act
+            $new_phone = "5031546887";
+            $test_stylist->updatePhone($new_phone);
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals($new_phone, $result[0]->getPhone());
+        }
+
 
 
     }
