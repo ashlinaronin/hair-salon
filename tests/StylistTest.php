@@ -152,7 +152,7 @@
         }
 
         // Delete test should include more than one row in the DB
-        // to make sure it's deleting the correct row.
+        // to make sure it's actually deleting the correct row.
         function test_delete()
         {
             //Arrange
