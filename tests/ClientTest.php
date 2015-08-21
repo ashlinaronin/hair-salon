@@ -103,6 +103,25 @@
             $this->assertEquals([$client1, $client2], $result);
         }
 
+        function test_updatePhone()
+        {
+            //Arrange
+            $stylist = new Stylist("Diane", "5035528959", "MPB", false);
+            $stylist->save();
+
+            $client1 = new Client("Steven", "5412232442", $stylist->getId());
+            $client1->save();
+            $new_phone = "5029999999";
+            $client1->updatePhone($new_phone);
+
+
+            //Act
+            $result = Client::getAll();
+
+            //Assert
+            $this->assertEquals($new_phone, $result[0]->getPhone());
+        }
+
 
 
     }
