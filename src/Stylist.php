@@ -104,7 +104,11 @@
         // just one update method for now
         function updatePhone($new_phone)
         {
-
+            $GLOBALS['DB']->exec(
+                "UPDATE stylists SET phone = '{$new_phone}'
+                    WHERE id = {$this->getId()};"
+            );
+            $this->setPhone($new_phone);
         }
 
         //[D]elete one
