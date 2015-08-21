@@ -5,7 +5,7 @@
     */
 
     require_once "src/Stylist.php";
-    //require_once "src/Client.php";
+    require_once "src/Client.php";
 
     $server = 'mysql:host=localhost:3306;dbname=hair_salon_test';
     $username = 'root';
@@ -17,7 +17,7 @@
         protected function tearDown()
         {
             Stylist::deleteAll();
-            //Client::deleteAll();
+            Client::deleteAll();
         }
 
         function test_getName()
@@ -228,6 +228,29 @@
 
             //Assert
             $this->assertEquals($stylist2, $result);
+        }
+
+        function test_getClients()
+        {
+            //Arrange
+            // Create two stylists
+            $iris = new Stylist("Iris","5033428797","Children",false);
+            $iris->save();
+            $bif = new Stylist("Bif","5033421111","Beard Trimming",true);
+            $bif->save();
+
+            // Create two clients for each stylist
+            $iris_client1 = new Client("Teddy", "5023445675", $iris->getId());
+            $iris_client2 = new Client("Rachel", "6078954928", $iris->getId());
+            $bif_client1 = new Client("Harry", "0984738174", $bif->getId());
+            $bif_client2 = new Client("Sally", "8103948275", $bif->getId());
+
+            //Act
+            // Get Iris' clients
+            $result = $iris->getClients();
+
+            //Assert
+            $this->assertEquals([$iris_client1, $iris_client2], $result);
         }
 
     }
