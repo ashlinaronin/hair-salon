@@ -68,6 +68,41 @@
             $this->assertEquals($stylist->getId(), $result);
         }
 
+        function test_save()
+        {
+            //Arrange
+            $client_name = "Bill Withers";
+            $client_phone = "5415134876";
+            $stylist = new Stylist("Diane", "5035528959", "MPB", false);
+            $stylist->save();
+            $client = new Client($client_name, $client_phone, $stylist->getId());
+            $client->save();
+
+            //Act
+            $result = Client::getAll();
+
+            //Assert
+            $this->assertEquals($client, $result[0]);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $stylist = new Stylist("Diane", "5035528959", "MPB", false);
+            $stylist->save();
+
+            $client1 = new Client("Steven", "5412232442", $stylist->getId());
+            $client1->save();
+            $client2 = new Client("Matthew", "5097869876", $stylist->getId());
+            $client2->save();
+
+            //Act
+            $result = Client::getAll();
+
+            //Assert
+            $this->assertEquals([$client1, $client2], $result);
+        }
+
 
 
     }
