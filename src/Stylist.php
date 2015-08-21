@@ -9,6 +9,7 @@
 
         function __construct ($name, $phone, $specialty, $weekends, $id = null)
         {
+            // Cast $weekends as an int to avoid MySQL->PHP bool conversion issues
             $this->name = (string) $name;
             $this->phone = (string) $phone;
             $this->specialty = (string) $specialty;

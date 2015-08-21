@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Hair Salon</title>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+        <!-- <link rel='stylesheet' href='/styles/styles.css' /> -->
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ stylist.getName}}</h1>
+            <p>Phone: {{ stylist.getPhone }}</p>
+            <p>Specialty: {{ stylist.getSpecialty }}</p>
+
+            {% if stylist.getWeekends %}
+                <p>Available on weekends</p>
+            {% else %}
+                <p>Not available on weekends</p>
+            {% endif %}
+
+            {% if clients is not empty %}
+                <p>Here are {{ stylist.getName }}'s clients:</p>
+                <ul>
+                    {% for client in clients %}
+                        <li><h4>{{ client.getName}}</h4>
+                            <ul>
+                                <li>Phone: {{ client.getPhone }}</li>
+                                <li>
+                                    <a href="/clients/{{ client.getId }}">Edit client</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <p><a href="/stylists/{{ stylist.getId }}/edit">Edit this stylist</a></p>
+
+            <p><a href="/">Home</a></p>
+
+            <h3>Add a client</h3>
+
+            <form action='/clients' method='post'>
+                <div class='form-group'>
+                    <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist.getId }}'>
+                    <label for='name'>Client Name</label>
+                    <input id='name' name='name' type='text' required>
+                </div>
+                <div class='form-group'>
+                    <label for='phone'>Client Phone:</label>
+                    <input id='phone' name='phone' type='number' required>
+                </div>
+                <button type='submit' class="btn btn-success">Add client</button>
+            </form>
+
+            <p><a href='/'>Home</a></p>
+        </div>
+    </body>
+</html>
