@@ -160,6 +160,24 @@
             $this->assertEquals([], $result);
         }
 
+        function test_find()
+        {
+            //Arrange
+            $stylist = new Stylist("Diane", "5035528959", "MPB", false);
+            $stylist->save();
+
+            $client1 = new Client("Steven", "5412232442", $stylist->getId());
+            $client1->save();
+            $client2 = new Client("Matthew", "5097869876", $stylist->getId());
+            $client2->save();
+
+            //Act
+            $result = Client::find($client2->getId());
+
+            //Assert
+            $this->assertEquals($client2, $result);
+        }
+
 
 
 
