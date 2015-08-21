@@ -241,9 +241,13 @@
 
             // Create two clients for each stylist
             $iris_client1 = new Client("Teddy", "5023445675", $iris->getId());
+            $iris_client1->save();
             $iris_client2 = new Client("Rachel", "6078954928", $iris->getId());
+            $iris_client2->save();
             $bif_client1 = new Client("Harry", "0984738174", $bif->getId());
+            $bif_client1->save();
             $bif_client2 = new Client("Sally", "8103948275", $bif->getId());
+            $bif_client2->save();
 
             //Act
             // Get Iris' clients

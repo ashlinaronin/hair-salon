@@ -111,6 +111,26 @@
             return $found_stylist;
         }
 
+        //[R]ead
+        function getClients()
+        {
+            $matching_clients = array();
+            $db_clients = $GLOBALS['DB']->query(
+                "SELECT * FROM clients WHERE stylist_id = {$this->getId()};"
+            );
+
+            foreach ($db_clients as $client) {
+                $new_client = new Client(
+                    $client['name'],
+                    $client['phone'],
+                    $client['stylist_id'],
+                    $client['id']
+                );
+                array_push($matching_clients, $new_client);
+            }
+            return $matching_clients;
+        }
+
         //[U]pdate
         // just one update method for now
         function updatePhone($new_phone)
