@@ -61,13 +61,37 @@
         //[C]reate
         function save()
         {
-
+            $GLOBALS['DB']->exec(
+                "INSERT INTO stylists (name, phone, specialty, weekends) VALUES (
+                    '{$this->getName()}',
+                    '{$this->getPhone()}',
+                    '{$this->getSpecialty()}',
+                    {$this->getWeekends()}
+                );"
+            );
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         //[R]ead all
         static function getAll()
         {
+            $db_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
+            $all_stylists = array();
 
+            /* $db_stylists is a PDO object with property query_string.
+             * To actually get the data from the query we can iterate over
+             * the PDO object which magically returns db rows. */
+            foreach ($db_stylists as $stylist) {
+                $new_stylist = new Stylist(
+                    $stylist['name'],
+                    $stylist['phone'],
+                    $stylist['specialty'],
+                    $stylist['weekends'],
+                    $stylist['id']
+                );
+                array_push($all_stylists, $new_stylist);
+            }
+            return $all_stylists;
         }
 
         //[R]ead one
@@ -92,7 +116,7 @@
         //[D]elete all
         static function deleteAll()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM stylists;");
         }
     }
 ?>

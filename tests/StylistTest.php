@@ -14,18 +14,18 @@
 
     class StylistTest extends PHPUnit_Framework_TestCase
     {
-        // protected function tearDown()
-        // {
-        //     Stylist::deleteAll();
-        //     //Client::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Stylist::deleteAll();
+            //Client::deleteAll();
+        }
 
         function test_getName()
         {
             //Arrange
-            $name = "Joann";
-            $phone = "5033445678";
-            $specialty = "Men\'s Cuts";
+            $name = "Diane";
+            $phone = "5033440878";
+            $specialty = "Hair Loss";
             $weekends = true;
 
             $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
@@ -40,9 +40,9 @@
         function test_getPhone()
         {
             //Arrange
-            $name = "Joann";
-            $phone = "5033445678";
-            $specialty = "Men\'s Cuts";
+            $name = "Steph";
+            $phone = "5033145678";
+            $specialty = "Color";
             $weekends = true;
 
             $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
@@ -57,9 +57,9 @@
         function test_getSpeciality()
         {
             //Arrange
-            $name = "Joann";
-            $phone = "5033445678";
-            $specialty = "Men\'s Cuts";
+            $name = "Barb";
+            $phone = "5039885678";
+            $specialty = "Women";
             $weekends = true;
 
             $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
@@ -76,7 +76,7 @@
             //Arrange
             $name = "Joann";
             $phone = "5033445678";
-            $specialty = "Men\'s Cuts";
+            $specialty = "Men";
             $weekends = true;
 
             $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
@@ -93,7 +93,7 @@
             //Arrange
             $name = "Joann";
             $phone = "5033445678";
-            $specialty = "Men\'s Cuts";
+            $specialty = "Men";
             $weekends = true;
 
             $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
@@ -112,7 +112,7 @@
             $stylist1 = new Stylist(
                 "Iris",
                 "5033428797",
-                "Children\'s Color",
+                "Children",
                 false
             );
             $stylist1->save();
