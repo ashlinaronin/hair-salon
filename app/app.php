@@ -18,8 +18,22 @@
         'twig.path' => __DIR__.'/../views'
     ));
 
+    /* Helper function to escape apostrophes and other special chars
+     * in an associative input array.
+     * Designed specifically to act on $_POST, but generalized to
+     * work for any associative array. It's safer to not
+     * act on $_POST directly, so we return a new escaped array. */
+    function escapeCharsInArray($input_associative_array) {
+        $escaped_array = array();
+        foreach($input_associative_array as $key => $value) {
+            $escaped_array[$key] = preg_quote($value, "'");
+        }
+        return $escaped_array;
+    }
 
 
+
+    //////////////////////////// Routes
 
     // Landing page. [R]ead
     $app->get("/", function() use ($app) {
@@ -40,11 +54,12 @@
 
     // [C]reate Stylist, display all stylists
     $app->post("/stylists", function() use ($app) {
+        $escaped_inputs = escapeCharsInArray($_POST);
         $new_stylist = new Stylist(
-            $_POST['name'],
-            $_POST['phone'],
-            $_POST['specialty'],
-            $_POST['weekends']
+            $escaped_inputs['name'],
+            $escaped_inputs['phone'],
+            $escaped_inputs['specialty'],
+            $escaped_inputs['weekends']
         );
         $new_stylist->save();
         return $app['twig']->render('index.html.twig', array(
@@ -88,8 +103,8 @@
         ));
     });
 
-    // [D]elete all stylists
-    //////////
+
+
 
 
     // Client routes
@@ -97,10 +112,11 @@
     // (stylist_id will come from secret field in client entry form)
     // Then display clients of current stylist.
     $app->post("/clients", function() use ($app) {
+        $escaped_inputs = escapeCharsInArray($_POST);
         $new_client = new Client(
-            $_POST['name'],
-            $_POST['phone'],
-            $_POST['stylist_id']
+            $escaped_inputs['name'],
+            $escaped_inputs['phone'],
+            $escaped_inputs['stylist_id']
         );
         $new_client->save();
 
