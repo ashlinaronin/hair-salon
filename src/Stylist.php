@@ -95,9 +95,20 @@
         }
 
         //[R]ead one
+        /* I think ultimately we will be using SQL queries to access one
+         * item in the database. However, for now, because of the way the
+         * PDO object works, it is easier to turn the whole database into
+         * objects of the desired class first and then search them in PHP. */
         static function find($search_id)
         {
-
+            $found_stylist = null;
+            $all_stylists = Stylist::getAll();
+            foreach($all_stylists as $stylist) {
+                if ($stylist->getId() == $search_id) {
+                    $found_stylist = $stylist;
+                }
+            }
+            return $found_stylist;
         }
 
         //[U]pdate
