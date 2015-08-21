@@ -88,6 +88,49 @@
             $this->assertEquals($weekends, $result);
         }
 
+        function test_save()
+        {
+            //Arrange
+            $name = "Joann";
+            $phone = "5033445678";
+            $specialty = "Men\'s Cuts";
+            $weekends = true;
+
+            $test_stylist = new Stylist($name, $phone, $specialty, $weekends);
+            $test_stylist->save();
+
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals($test_stylist, $result[0]);
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $stylist1 = new Stylist(
+                "Iris",
+                "5033428797",
+                "Children\'s Color",
+                false
+            );
+            $stylist1->save();
+            $stylist2 = new Stylist(
+                "Bif",
+                "5033421111",
+                "Beard Trimming",
+                true
+            );
+            $stylist2->save();
+
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals([$stylist1, $stylist2], $result);
+        }
+
 
 
     }
