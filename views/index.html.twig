@@ -1,36 +1,54 @@
 <html>
     <head>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-        <!-- <link rel='stylesheet' href='/styles/styles.css' /> -->
+        <link rel='stylesheet' href='styles/styles.css' />
         <title>Hair Salon</title>
     </head>
     <body>
+        <!-- start nav -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                        <img alt="Salon" src="img/scissors-icon.png" id="scissors">
+                        <span id="belinda">Belinda's Beauty</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- end nav -->
+
 
         <div class="container">
-            <h1>Welcome to Belinda's Hi-Class Hair Salon</h1>
+            <h3>Add a new stylist:</h3>
 
-            <p>Add a new stylist:</p>
-
-            <form action="/stylists" method="post">
+            <form action="/stylists" class="form-horizontal" method="post">
                 <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input id="name" name="name" type="text" required>
+                    <label class="control-label col-sm-2" for="name">Name:</label>
+                    <div class="col-sm-10">
+                        <input id="name" name="name" type="text" required>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone:</label>
-                    <input id="phone" name="phone" type="number" maxlength="10" required>
+                    <label class="control-label col-sm-2" for="phone">Phone:</label>
+                    <div class="col-sm-10">
+                        <input id="phone" name="phone" type="number" maxlength="10" required>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="specialty">Specialty:</label>
-                    <input id="specialty" name="specialty" type="text" required>
+                    <label class="control-label col-sm-2" for="specialty">Specialty:</label>
+                    <div class="col-sm-10">
+                        <input id="specialty" name="specialty" type="text" required>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for='weekends'>Available for weekend cuts?</label>
+                    <label class="control-label col-sm-2" for='weekends'>Available weekends?</label>
                         <br>
-                    <input type="radio" name="weekends" value="1" required>
-                        Certainly <br>
-                    <input type="radio" name="weekends" value="0" required>
-                        Nope <br>
+                    <div class="col-sm-10">
+                        <label class="radio-inline"><input type="radio" name="weekends" value="1" required>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="weekends" value="0" required>No</label>
+                    </div>
+
                 </div>
 
                 <button type="submit" class="btn btn-success">Add Stylist</button>

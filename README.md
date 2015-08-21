@@ -1,4 +1,4 @@
-# _Hair Salon_
+# Hair Salon
 
 ##### _Track hairstylists and clients, 08/21/15_
 
