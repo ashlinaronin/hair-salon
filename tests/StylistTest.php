@@ -151,6 +151,60 @@
             $this->assertEquals($new_phone, $result[0]->getPhone());
         }
 
+        // Delete test should include more than one row in the DB
+        // to make sure it's deleting the correct row.
+        function test_delete()
+        {
+            //Arrange
+            $stylist1 = new Stylist(
+                "Iris",
+                "5033428797",
+                "Children",
+                false
+            );
+            $stylist1->save();
+            $stylist2 = new Stylist(
+                "Bif",
+                "5033421111",
+                "Beard Trimming",
+                true
+            );
+            $stylist2->save();
+
+            //Act
+            $stylist1->delete();
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals([$stylist2], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //Arrange
+            $stylist1 = new Stylist(
+                "Iris",
+                "5033428797",
+                "Children",
+                false
+            );
+            $stylist1->save();
+            $stylist2 = new Stylist(
+                "Bif",
+                "5033421111",
+                "Beard Trimming",
+                true
+            );
+            $stylist2->save();
+
+            //Act
+            Stylist::deleteAll();
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
 
 
     }
