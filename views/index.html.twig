@@ -36,8 +36,12 @@
 
                                 <form action="/" method="post">
                                     <input name="_method" type="hidden" value="delete">
-                                    <button type="submit" class="btn btn-danger">Clear all</button>
+                                    <button type="submit" class="btn btn-default btn-md">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Clear all
+                                    </button>
                                 </form>
+
+
                             {% else %}
                                 <p>There are no stylists yet.</p>
                             {% endif %}
