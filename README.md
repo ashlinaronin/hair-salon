@@ -14,13 +14,13 @@ _Belinda's Beauty Shoppe allows salon owners to add, view, update and delete sty
 * Run "composer install" in the project directory
 * Open MAMP Preferences and set MySQL port to 3306
 * Start Servers in MAMP
-* Import hair_salon DB into MySQL
+* Import hair_salon.sql and hair_salon_test.sql into MySQL using the Import tab in phpMyAdmin (localhost:8888/phpmyadmin)
 * Start PHP server in web subdirectory ("php -S localhost:8000")
 * Navigate to localhost:8000 and enjoy!
 
 ## Technologies Used
 
-HTML, CSS, Bootstrap, PHP, MySQL, Silex, Twig
+HTML, CSS, Bootstrap, PHP, MySQL, Silex, Twig, PHPUnit, PHPMyAdmin
 
 
 ### Legal

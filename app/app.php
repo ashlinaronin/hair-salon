@@ -103,6 +103,21 @@
         ));
     });
 
+    // [D]elete all clients for a particular stylist
+    $app->delete("/stylists/{id}/deleteAll", function($id) use ($app) {
+        $stylist = Stylist::find($id);
+
+        // Get all clients for a particular stylist and delete them
+        $matching_clients = $stylist->getClients();
+        foreach($matching_clients as $client) {
+            $client->delete();
+        }
+
+        return $app['twig']->render('stylist.html.twig', array(
+            'stylist' => $stylist,
+            'clients' => $stylist->getClients()
+        ));
+    });
 
 
 
